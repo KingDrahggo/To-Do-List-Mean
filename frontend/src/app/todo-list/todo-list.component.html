@@ -1,0 +1,49 @@
+<mat-card>
+  <form [formGroup]="signupForm" (ngSubmit)="addTodo()">
+    <!-- <mat-form-field>
+      <input
+      matInput
+      name="_id"
+      [(ngModel)]="todoService.selectedTodo._id"
+      formControlName="name"
+      class="form-control" />
+      <mat-error *ngIf="signupForm.invalid">Please enter a task</mat-error>
+    </mat-form-field> -->
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input
+      matInput
+      type="text"
+      id="name"
+      formControlName="name"
+      class="form-control" />
+      <mat-error *ngIf="signupForm.invalid">Please enter a task</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <textarea
+      matInput
+      type="text"
+      id="description"
+      formControlName="description"
+      class="form-control" ></textarea>
+      <mat-error *ngIf="signupForm.invalid">Please enter a description</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Date</mat-label>
+      <input
+      matInput
+      type="text"
+      id="date"
+      formControlName="date"
+      class="form-control" />
+      <mat-error *ngIf="signupForm.invalid">Please enter a date</mat-error>
+    </mat-form-field>
+    <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    class="submit"
+    [disabled]="!signupForm.valid">Submit</button>
+  </form>
+</mat-card>
