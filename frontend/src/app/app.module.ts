@@ -21,7 +21,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     AppComponent,
     TodoListComponent,
     ShowTodoComponent,
-    NavbarComponent
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
