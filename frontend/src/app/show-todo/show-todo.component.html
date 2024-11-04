@@ -1,27 +1,30 @@
-<mat-accordion multi = true *ngIf = "todos.length > 0">
+<mat-accordion multi="true" *ngIf="todos.length > 0">
   <mat-expansion-panel *ngFor="let todo of todos">
     <mat-expansion-panel-header>
-     {{todo.name}}
+      {{ todo.name }}
     </mat-expansion-panel-header>
     <mat-panel-description>
-      {{todo.description}}
+      {{ todo.description }}
     </mat-panel-description>
-    <p> {{todo.date}} </p>
+    <p>{{ todo.date }}</p>
     <button
-    mat-raised-button
-    color="primary"
-    type="submit"
-    class="edit__button"
-    (click)="onEdit(todo)"
-    >Edit</button>
+      mat-raised-button
+      color="primary"
+      class="edit__button"
+      (click)="onEdit(todo)"
+    >
+      Edit
+    </button>
     <button
-    mat-raised-button
-    color="primary"
-    type="submit"
-    class="delete__button"
-    >Delete</button>
+      mat-raised-button
+      color="warn"
+      class="delete__button"
+      (click)="onDelete(todo)"
+    >
+      Delete
+    </button>
   </mat-expansion-panel>
 </mat-accordion>
 <p class="info-text mat-body-1" *ngIf="todos.length <= 0">
-No Post added yet!</p>
-
+  No Post added yet!
+</p>

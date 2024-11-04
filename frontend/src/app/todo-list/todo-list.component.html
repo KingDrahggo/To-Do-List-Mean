@@ -1,49 +1,37 @@
 <mat-card>
-  <form [formGroup]="signupForm" (ngSubmit)="addTodo()">
-    <!-- <mat-form-field>
-      <input
-      matInput
-      name="_id"
-      [(ngModel)]="todoService.selectedTodo._id"
-      formControlName="name"
-      class="form-control" />
-      <mat-error *ngIf="signupForm.invalid">Please enter a task</mat-error>
-    </mat-form-field> -->
+  <form [formGroup]="signupForm" (ngSubmit)="addOrUpdateTodo()">
     <mat-form-field>
       <mat-label>Name</mat-label>
-      <input
-      matInput
-      type="text"
-      id="name"
-      formControlName="name"
-      class="form-control" />
-      <mat-error *ngIf="signupForm.invalid">Please enter a task</mat-error>
+      <input matInput formControlName="name" />
+      <mat-error *ngIf="signupForm.get('name')?.invalid">Please enter a name</mat-error>
     </mat-form-field>
+
     <mat-form-field>
       <mat-label>Description</mat-label>
-      <textarea
-      matInput
-      type="text"
-      id="description"
-      formControlName="description"
-      class="form-control" ></textarea>
-      <mat-error *ngIf="signupForm.invalid">Please enter a description</mat-error>
+      <textarea matInput formControlName="description"></textarea>
+      <mat-error *ngIf="signupForm.get('description')?.invalid">Please enter a description</mat-error>
     </mat-form-field>
+
     <mat-form-field>
       <mat-label>Date</mat-label>
-      <input
-      matInput
-      type="text"
-      id="date"
-      formControlName="date"
-      class="form-control" />
-      <mat-error *ngIf="signupForm.invalid">Please enter a date</mat-error>
+      <input matInput formControlName="date" />
+      <mat-error *ngIf="signupForm.get('date')?.invalid">Please enter a date</mat-error>
     </mat-form-field>
-    <button
-    mat-raised-button
-    color="primary"
-    type="submit"
-    class="submit"
-    [disabled]="!signupForm.valid">Submit</button>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="!signupForm.valid">
+      {{ editMode ? 'Update' : 'Add' }}
+    </button>
   </form>
 </mat-card>
+
+<mat-accordion *ngIf="todos.length > 0">
+  <mat-expansion-panel *ngFor="let todo of todos">
+    <mat-expansion-panel-header>{{ todo.name }}</mat-expansion-panel-header>
+    <p>{{ todo.description }}</p>
+    <p>{{ todo.date }}</p>
+    <button mat-button color="primary" (click)="onEdit(todo)">Edit</button>
+    <button mat-button color="warn" (click)="onDelete(todo)">Delete</button>
+  </mat-expansion-panel>
+</mat-accordion>
+
+<p *ngIf="todos.length === 0">No todos available.</p>
