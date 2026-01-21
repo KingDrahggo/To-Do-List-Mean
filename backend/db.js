@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://0.0.0.0:27017/TodoList', (err) => {
+// Use environment variable for MongoDB URI, fallback to local for development
+const mongoURI = process.env.MONGODB_URI || 'mongodb://0.0.0.0:27017/TodoList';
+
+mongoose.connect(mongoURI, (err) => {
     if(!err)
     console.log('MongoDB connection succeeded.');
     else

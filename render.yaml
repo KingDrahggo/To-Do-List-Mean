@@ -1,0 +1,31 @@
+services:
+  # Backend API Service
+  - type: web
+    name: todolist-backend
+    runtime: node
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
+    envVars:
+      - key: MONGODB_URI
+        sync: false
+      - key: FRONTEND_URL
+        sync: false
+      - key: NODE_ENV
+        value: production
+
+  # Frontend Static Site
+  - type: web
+    name: todolist-frontend
+    runtime: static
+    env: static
+    region: oregon
+    plan: free
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: ./frontend/dist/to-do-mean-graphql
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
