@@ -1,7 +1,216 @@
-textarea{
+/* Form Styles */
+.input-card {
+  background-color: var(--bg-surface);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(187, 134, 252, 0.15);
+  /* Soft Purple Glow */
+  margin-bottom: 2rem;
+  border: 1px solid var(--primary-color);
+  /* The Purple Highlight */
+}
+
+form {
   display: flex;
-  text-align: center;
- flex-direction: row;
- padding: 0;
- margin: 0;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+/* Custom Input Styles: White Boxes inside Dark Shell */
+/* Using ::ng-deep with extra specific selectors to ensure override */
+::ng-deep .input-card .mat-form-field-wrapper {
+  background-color: #FFFFFF !important;
+  /* Force WHITE background */
+  border-radius: 6px;
+  padding: 0 0.5rem;
+  border: 2px solid #651FFF !important;
+  /* Force PURPLE border */
+}
+
+/* Remove default underline since we have a box border */
+::ng-deep .input-card .mat-form-field-underline {
+  display: none !important;
+}
+
+/* Text Colors - Black on White */
+::ng-deep .input-card .mat-input-element,
+::ng-deep .input-card textarea.mat-input-element {
+  color: #000000 !important;
+  /* Force BLACK text */
+  caret-color: #651FFF !important;
+  /* Purple cursor */
+  font-size: 1.1rem !important;
+  font-weight: 500;
+}
+
+/* Labels */
+::ng-deep .input-card .mat-form-field-label {
+  color: #757575 !important;
+  /* Grey placeholder text */
+  margin-left: 0.2rem;
+  top: auto !important;
+}
+
+::ng-deep .input-card .mat-focused .mat-form-field-label {
+  color: #651FFF !important;
+  /* Purple label when focused */
+  font-weight: 700;
+}
+
+::ng-deep .input-card .mat-form-field-empty.mat-form-field-label {
+  color: #9E9E9E !important;
+}
+
+/* Button Styling */
+.form-actions {
+  display: flex;
+  justify-content: center;
+  /* Force Center */
+  margin-top: 1rem;
+}
+
+button.add-btn {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 1rem 4rem;
+  /* Larger Click Area */
+  font-weight: bold;
+  font-size: 1.1rem;
+  border-radius: 30px;
+  /* Pill shape */
+  letter-spacing: 1px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border: 2px solid transparent;
+  width: 100%;
+  /* Make it span reasonably */
+  max-width: 300px;
+}
+
+button.add-btn:hover {
+  transform: translateY(-3px) scale(1.08);
+  /* Stronger Lift and grow */
+  box-shadow: 0 10px 20px rgba(101, 31, 255, 0.5);
+  /* Stronger shadow */
+  background-color: #7C4DFF;
+  cursor: pointer;
+}
+
+/* List Styles */
+.todo-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.todo-card {
+  background-color: var(--bg-surface);
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  /* More padding */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.3s ease;
+  border-left: 4px solid var(--primary-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.todo-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.todo-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.todo-header {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.todo-title {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.todo-date {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.todo-desc {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-top: 5px;
+}
+
+.todo-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* Completed State */
+.todo-card.completed {
+  opacity: 0.6;
+  border-left-color: var(--success-color);
+  background-color: rgba(30, 30, 30, 0.5);
+}
+
+.todo-card.completed .todo-title {
+  text-decoration: line-through;
+  color: var(--success-color);
+}
+
+/* Buttons */
+.icon-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: color 0.2s;
+  padding: 5px;
+}
+
+.icon-btn:hover {
+  color: white;
+}
+
+.complete-btn {
+  color: var(--text-secondary);
+}
+
+.complete-btn:hover {
+  color: var(--success-color);
+}
+
+.delete-btn:hover {
+  color: var(--error-color);
+}
+
+.edit-btn:hover {
+  color: var(--primary-color);
+}
+
+@media (max-width: 600px) {
+  .todo-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .todo-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
 }

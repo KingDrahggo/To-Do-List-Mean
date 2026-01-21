@@ -1,37 +1,60 @@
-<mat-card>
+
+<div class="input-card">
   <form [formGroup]="signupForm" (ngSubmit)="addOrUpdateTodo()">
-    <mat-form-field>
-      <mat-label>Name</mat-label>
-      <input matInput formControlName="name" />
+    <mat-form-field appearance="outline">
+      <mat-label>Task Name</mat-label>
+      <input matInput formControlName="name" placeholder="E.g. Buy Groceries">
       <mat-error *ngIf="signupForm.get('name')?.invalid">Please enter a name</mat-error>
     </mat-form-field>
 
-    <mat-form-field>
-      <mat-label>Description</mat-label>
-      <textarea matInput formControlName="description"></textarea>
-      <mat-error *ngIf="signupForm.get('description')?.invalid">Please enter a description</mat-error>
+    <mat-form-field appearance="outline">
+      <mat-label>Description (Optional)</mat-label>
+      <textarea matInput formControlName="description" rows="2" placeholder="Details..."></textarea>
     </mat-form-field>
 
-    <mat-form-field>
-      <mat-label>Date</mat-label>
-      <input matInput formControlName="date" />
-      <mat-error *ngIf="signupForm.get('date')?.invalid">Please enter a date</mat-error>
+    <mat-form-field appearance="outline">
+      <mat-label>Due Date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="date" placeholder="Choose a date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="signupForm.get('date')?.invalid">Please pick a date</mat-error>
     </mat-form-field>
 
-    <button mat-raised-button color="primary" type="submit" [disabled]="!signupForm.valid">
-      {{ editMode ? 'Update' : 'Add' }}
-    </button>
+    <div class="form-actions">
+      <button mat-raised-button class="add-btn" type="button" (click)="resetForm()" *ngIf="editMode" style="margin-right: 10px; background: grey;">Cancel</button>
+      <button mat-raised-button class="add-btn" type="submit" [disabled]="!signupForm.valid">
+        {{ editMode ? 'Update Task' : 'Add Task' }}
+      </button>
+    </div>
   </form>
-</mat-card>
+</div>
 
-<mat-accordion *ngIf="todos.length > 0">
-  <mat-expansion-panel *ngFor="let todo of todos">
-    <mat-expansion-panel-header>{{ todo.name }}</mat-expansion-panel-header>
-    <p>{{ todo.description }}</p>
-    <p>{{ todo.date }}</p>
-    <button mat-button color="primary" (click)="onEdit(todo)">Edit</button>
-    <button mat-button color="warn" (click)="onDelete(todo)">Delete</button>
-  </mat-expansion-panel>
-</mat-accordion>
+<div class="todo-list-container">
+  <div *ngIf="todos.length === 0" class="empty-state">
+    <p>No tasks yet. Add one above to get started!</p>
+  </div>
 
-<p *ngIf="todos.length === 0">No todos available.</p>
+  <div class="todo-card" *ngFor="let todo of todos" [class.completed]="todo.isCompleted">
+    <div class="todo-content">
+      <div class="todo-header">
+        <span class="todo-title">{{ todo.name }}</span>
+        <span class="todo-date" *ngIf="todo.date">Due: {{ todo.date | date:'mediumDate' }}</span>
+      </div>
+      <p class="todo-desc" *ngIf="todo.description">{{ todo.description }}</p>
+    </div>
+    
+    <div class="todo-actions">
+      <button class="icon-btn complete-btn" (click)="toggleCompletion(todo)" title="Toggle Completion">
+        <mat-icon>{{ todo.isCompleted ? 'check_circle' : 'radio_button_unchecked' }}</mat-icon>
+      </button>
+      
+      <button class="icon-btn edit-btn" (click)="onEdit(todo)" title="Edit">
+        <mat-icon>edit</mat-icon>
+      </button>
+      
+      <button class="icon-btn delete-btn" (click)="onDelete(todo)" title="Delete">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

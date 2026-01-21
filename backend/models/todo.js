@@ -5,7 +5,8 @@ var ToDo = mongoose.model('ToDo', {
     
     name: {type: String},
     description: {type: String},
-    date: {type: Number}
+    date: {type: Number},
+    isCompleted: { type: Boolean, default: false }
 });
 
 module.exports = { ToDo };
