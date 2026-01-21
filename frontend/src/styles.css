@@ -1,21 +1,62 @@
-/* You can add global styles to this file, and also import other style files */
-*{
+:root {
+  --bg-dark: #121212;
+  /* Deep Dark Background */
+  --bg-surface: #1E1E1E;
+  /* Dark Card Surface */
+  --primary-color: #BB86FC;
+  /* The Header "Highlight" Purple */
+  --primary-variant: #3700B3;
+  --secondary-color: #03DAC6;
+  --error-color: #CF6679;
+  --text-primary: #FFFFFF;
+  /* White Text */
+  --text-secondary: #B0B0B0;
+  /* Light Grey Text */
+  --success-color: #00E676;
+  --font-family: 'Roboto', sans-serif;
+}
+
+* {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
+
 html,
 body {
   height: 100%;
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  overflow-x: hidden;
 }
+
 body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-
+  display: flex;
+  flex-direction: column;
 }
 
-app-root{
-  height: 100%;
+app-root {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bg-surface);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-color);
 }

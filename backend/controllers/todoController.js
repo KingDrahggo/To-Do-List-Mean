@@ -36,6 +36,7 @@ app.post("/", (req, res) => {
     name: req.body.name,
     description: req.body.description,
     date: req.body.date,
+    isCompleted: req.body.isCompleted || false
   });
   tdl.save((err, doc) => {
     if (!err) {
@@ -55,7 +56,8 @@ app.put('/:id', (req, res) => {
   const updatedTodo = {
     name: req.body.name,
     description: req.body.description,
-    date: req.body.date
+    date: req.body.date,
+    isCompleted: req.body.isCompleted
   };
 
   ToDo.findByIdAndUpdate(req.params.id, { $set: updatedTodo }, { new: true }, (err, doc) => {

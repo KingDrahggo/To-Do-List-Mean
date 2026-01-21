@@ -8,6 +8,12 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from './confirmation-dialog.component';
 import { HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -15,13 +21,13 @@ import { TodoListComponent } from './todo-list/todo-list.component';
 import { ShowTodoComponent } from './show-todo/show-todo.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
     TodoListComponent,
     ShowTodoComponent,
     NavbarComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -33,8 +39,12 @@ import { NavbarComponent } from './navbar/navbar.component';
     MatCardModule,
     MatButtonModule,
     MatToolbarModule,
-    MatExpansionModule
-
+    MatExpansionModule,
+    MatIconModule,
+    MatSnackBarModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

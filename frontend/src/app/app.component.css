@@ -1,11 +1,63 @@
-
-
-.todo-container{
-  background-color: bisque;
-  width: 50%;
+.main-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.app-header {
+  background-color: var(--bg-surface);
+  padding: 1rem 2rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  display: flex;
   align-items: center;
-  padding: 10px;
+  justify-content: center;
+  /* Centered for focus */
+  z-index: 100;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-icon {
+  background: var(--primary-color);
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 1px;
+}
+
+.highlight {
+  color: var(--primary-color);
+}
+
+.content-area {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+  width: 100%;
+  max-width: 800px;
+  /* Constrain width for better readability */
+  margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+  .content-area {
+    padding: 1rem;
+  }
 }
